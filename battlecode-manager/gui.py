@@ -286,7 +286,7 @@ print("=== Ready! ===")
 print("To play games open http://localhost:6147/run.html in your browser on Mac/Linux/WindowsPro, or http://192.168.99.100:6147/run.html on Windows10Home.")
 lock = threading.Lock()
 
-eel.start('run.html', options=options, block=False)
+eel.start('run.html', host=options['host'], port=options['port'], mode=options['mode'], block=False)
 
 while True:
     eel.sleep(1.0)
