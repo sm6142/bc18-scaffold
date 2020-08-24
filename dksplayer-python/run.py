@@ -140,14 +140,15 @@ while True:
                 continue
             # second, rocket logic
             if unit.unit_type == bc.UnitType.Rocket:
-                if gc.planet == 'mars':
+                if gc.planet() == bc.Planet.Mars :
+                    print('MARS id:',unit.id,' rocket on mars with ',len(unit.structure_garrison()),' units inside')
                     if len(unit.structure_garrison()) > 0:
                         for d in directions:
                             if gc.can_unload(unit.id, d):
                                 new_unit = gc.unload(unit.id, d)
                                 print('MARS id:',unit.id,'unloaded a unit!')
                                 break
-                elif unit.structure_is_built and unit.health == unit.max_health and len(unit.structure_garrison()) == 8:
+                elif gc.planet() == bc.Planet.Earth and unit.structure_is_built and unit.health == unit.max_health and len(unit.structure_garrison()) == 8:
                     dest = get_launch_dest()
                     if gc.can_launch_rocket(unit.id, dest):
                         gc.launch_rocket(unit.id, dest)
